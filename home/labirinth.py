@@ -1,7 +1,7 @@
 directions = ((1, 0, 'S'), (0, 1, 'E'), (0, -1, 'W'), (-1, 0, 'N'))
 final_route = None
 
-def get_exit_route(lab, position=(1, 1), path=((1, 1)), route=''):
+def get_exit_route1(lab, position=(1, 1), path=((1, 1)), route=''):
     global final_route
     if final_route:
         return final_route
@@ -22,29 +22,25 @@ def get_exit_route(lab, position=(1, 1), path=((1, 1)), route=''):
 
     return final_route
 
-def get_exit_route1(lab):
-    def visit_point(i, j, direction):
-        if 0 <= i < 12 and 0 <= j < 12 and (i, j) not in path and not lab[i][j]:
-            stack.append((i, j, route+direction))
-
+def get_exit_route(lab):
+    n = m = 12
     end = (10, 10)
-    route = ''
-    path = []
     stack = [(1, 1, '')]
     while stack:
-        r, c, route = stack.pop()
-        if (r, c) == end:
-            print(route)
+        row, col, route = stack.pop()
+        if (row, col) == end:
             return route
 
-        path.append((r, c))
-        visit_point(r-1, c, 'N')
-        visit_point(r, c-1, 'W')
-        visit_point(r, c+1, 'E')
-        visit_point(r+1, c, 'S')
+        if 0 <= row < m and 0 <= col < n and lab[row][col] == 0:
+            stack.append((row-1, col, route+'N'))
+            stack.append((row, col-1, route+'W'))
+            stack.append((row, col+1, route+'E'))
+            stack.append((row+1, col, route+'S'))
+
+        lab[row][col] = 1
 
 
-assert get_exit_route1([
+assert get_exit_route([
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
