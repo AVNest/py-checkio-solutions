@@ -18,7 +18,7 @@ def get_exit_route1(lab, position=(1, 1), path=((1, 1)), route=''):
         if 0 <= y < 12 and 0 <= x < 12 and (x, y) not in path and not lab[x][y]:
             path += ((x, y), )
             route += direction
-            get_exit_route(lab, (x, y), path, route)
+            get_exit_route1(lab, (x, y), path, route)
 
     return final_route
 
