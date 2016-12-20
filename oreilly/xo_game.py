@@ -1,6 +1,7 @@
-def checkio(map):
-    return
+def checkio(field):
+    print(field)
 
+    
 assert checkio([
     "X.O",
     "XX.",
