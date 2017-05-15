@@ -1,9 +1,8 @@
-from functools import reduce
-from operator import or_
+""" The solution of https://py.checkio.org/mission/largest-histogram/ task """
 
 
 # V1.
-def largest_histogram(histogram):
+def largest_histogram_v1(histogram):
     squares = set()
     max_width = len(histogram)
     for col, height in enumerate(histogram):
@@ -24,7 +23,7 @@ def squares_gen(area):
         yield width * height
 
 
-def largest_histogram(histogram):
+def largest_histogram_v2(histogram):
     max_width = len(histogram)
     squares = (max(squares_gen(area=histogram[col:]))
                for col in range(max_width))

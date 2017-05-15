@@ -1,7 +1,11 @@
+""" The solution of https://py.checkio.org/mission/brackets/ task """
+
+
 def remove_brackets(expr, supported_brackets):
     for brackets in supported_brackets:
         expr = expr.replace(brackets, '')
     return expr
+
 
 def checkio(expression):
     supported_brackets = ('()', '[]', '{}')
@@ -17,11 +21,12 @@ def checkio(expression):
 
     return not expression
 
-assert checkio("((5+3)*2+1)") == True
-assert checkio("{[(3+1)+2]+}") == True
-assert checkio("(3+{1-1)}") == False
-assert checkio("[1+1]+(2*2)-{3/3}") == True
-assert checkio("(({[(((1)-2)+3)-3]/3}-3)") == False
-assert checkio("2+3") == True
+
+assert checkio("((5+3)*2+1)") is True
+assert checkio("{[(3+1)+2]+}") is True
+assert checkio("(3+{1-1)}") is False
+assert checkio("[1+1]+(2*2)-{3/3}") is True
+assert checkio("(({[(((1)-2)+3)-3]/3}-3)") is False
+assert checkio("2+3") is True
 
 print('It works')
