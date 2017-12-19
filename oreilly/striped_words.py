@@ -4,9 +4,10 @@ CONSONANTS = "BCDFGHJKLMNPQRSTVWXZ"
 
 def checkio(text):
     key = lambda x: 0 if x in VOWELS else 1 if x in CONSONANTS else -1
+    words = re.findall(r'\w+', text.upper())
     return sum(
         all(key(x) + key(y) == 1 for x, y in zip(word[:len(word)-1:], word[1::]))
-        for word in re.findall(r'\w+', text.upper()) if len(word) > 1
+        for word in words if len(word) > 1
     )
         
 assert checkio("My name is ...") == 3
