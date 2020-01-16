@@ -130,3 +130,29 @@ assert checkio((-20, -5, 10, 15)) == [-5, 10, 15, -20] # or (-5, 10, 15, -20)
 assert checkio((1, 2, 3, 0)) == [0, 1, 2, 3]
 assert checkio((-1, -2, -3, 0)) == [0, -1, -2, -3]
 print('10. ABS sorting works!')
+
+
+# 12. Second index
+def second_index(text: str, symbol: str) -> [int, None]:
+    try:
+        first_occurrence_index = text.index(symbol)
+        return text.index(symbol, first_occurrence_index + 1)
+    except ValueError:
+        return None
+
+
+assert second_index("sims", "s") == 3, "First"
+assert second_index("find the river", "e") == 12, "Second"
+assert second_index("hi", " ") is None, "Third"
+assert second_index("hi mayor", " ") is None, "Fourth"
+assert second_index("hi mr Mayor", " ") == 5, "Fifth"
+
+
+# 13. First word:
+def first_word(text: str) -> str:
+    words = text.split()
+    return words[0]
+
+assert first_word("Hello world") == "Hello"
+assert first_word("a word") == "a"
+assert first_word("hi") == "hi"
