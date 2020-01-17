@@ -156,3 +156,28 @@ def first_word(text: str) -> str:
 assert first_word("Hello world") == "Hello"
 assert first_word("a word") == "a"
 assert first_word("hi") == "hi"
+
+
+# 14. Bigger price
+from operator import itemgetter
+
+
+def bigger_price(limit: int, data: list) -> list:
+    sorted_data = sorted(data, key=itemgetter('price'), reverse=True)
+    return sorted_data[:limit]
+
+assert bigger_price(2, [
+    {"name": "bread", "price": 100},
+    {"name": "wine", "price": 138},
+    {"name": "meat", "price": 15},
+    {"name": "water", "price": 1}
+]) == [
+        {"name": "wine", "price": 138},
+        {"name": "bread", "price": 100}
+], "First"
+
+assert bigger_price(1, [
+    {"name": "pen", "price": 5},
+    {"name": "whiteboard", "price": 170}
+]) == [{"name": "whiteboard", "price": 170}], "Second"
+
