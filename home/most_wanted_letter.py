@@ -1,4 +1,5 @@
 import re
+import string
 from collections import Counter
 
 
@@ -9,6 +10,11 @@ def checkio(text: str) -> str:
     best_char, _ = max(char_statistics.items(), key=lambda x: (x[1], -ord(x[0])))
     
     return best_char
+
+
+def checkio1(text):
+    text = text.lower()
+    return max(string.ascii_lowercase, key=text.count)
 
 
 assert checkio("Hello World!") == "l", "Hello test"
